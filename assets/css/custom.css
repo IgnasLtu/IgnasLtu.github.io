@@ -213,19 +213,18 @@ main ol > li::before {
   justify-content: center;
 }
  
-main ul ul {
+main ul:not(.portfolio-filters):not(.resume-item ul) ul {
   margin: 8px 0 4px 6px;
   padding-left: 12px;
   border-left: 2px dashed #285fa7;
 }
- 
-main ul ul > li {
+ main ul:not(.portfolio-filters):not(.resume-item ul) ul > li {
   font-size: 0.95rem;
   color: #9fb0bf;
   margin-bottom: 4px;
 }
  
-main ul ul > li::before {
+main ul:not(.portfolio-filters):not(.resume-item ul) ul > li::before {
   width: 7px;
   height: 7px;
   border-radius: 50%;
