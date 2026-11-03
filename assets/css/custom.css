@@ -124,17 +124,17 @@ section.about, section.resume, section.portfolio {
 }
 
 .scroll-top {
-  background-color: #fd7e14 !important;
+  background-color: #2210ae !important;
   color: #ffffff !important;
   width: 45px;
   height: 45px;
   border-radius: 50% !important;
-  box-shadow: 0 4px 10px rgba(253, 126, 20, 0.4);
+  box-shadow: 0 4px 10px rgba(255, 48, 25, 0.4);
   transition: all 0.3s ease;
 }
 
 .scroll-top:hover {
-  background-color: #e8590c !important;
+  background-color: #719cd4 !important;
   transform: scale(1.1);
 }
 
@@ -156,4 +156,131 @@ section.about, section.resume, section.portfolio {
 
 .portfolio-card p {
   flex-grow: 1;               
+}
+main ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 10px 0 20px;
+}
+ 
+main ul > li {
+  position: relative;
+  padding-left: 28px;
+  margin-bottom: 8px;
+  line-height: 1.6;
+}
+ 
+main ul > li::before {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 0.6em;
+  width: 9px;
+  height: 9px;
+  background: #192bee;
+  transform: rotate(45deg);
+}
+ 
+main ol {
+  list-style: none;
+  counter-reset: zingsnis;
+  padding-left: 0;
+  margin: 10px 0 20px;
+}
+ 
+main ol > li {
+  counter-increment: zingsnis;
+  position: relative;
+  padding-left: 44px;
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+ 
+main ol > li::before {
+  content: counter(zingsnis);
+  position: absolute;
+  left: 0;
+  top: -1px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #0d6efd;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+ 
+main ul ul {
+  margin: 8px 0 4px 6px;
+  padding-left: 12px;
+  border-left: 2px dashed #285fa7;
+}
+ 
+main ul ul > li {
+  font-size: 0.95rem;
+  color: #9fb0bf;
+  margin-bottom: 4px;
+}
+ 
+main ul ul > li::before {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #921690;
+  transform: none;
+  top: 0.65em;
+}
+
+main table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #000000;
+  border-radius: 8px;
+  overflow: hidden;
+  color: #e5d3d0;
+}
+ 
+main table th,
+main table td {
+  padding: 12px 16px;
+  text-align: center;
+  vertical-align: middle;
+  border: 1px solid #ffffff;
+}
+ 
+main table thead th,
+main table tr:first-child th {
+  background: linear-gradient(135deg, #0066ff, #222d3c);
+  color: #ffffff;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  border-bottom: 3px solid #fefefe;
+}
+ 
+main table tbody tr:nth-child(odd) td {
+  background-color: #275a8d;
+  color: #ffffff;
+}
+ 
+main table tbody tr:nth-child(even) td {
+  background-color: #4c87cb;
+  color: #ffffff;
+}
+ 
+main table tbody tr {
+  transition: transform 0.2s ease;
+}
+ 
+main table tbody tr:hover td {
+  background-color: #1c3c52;
+  color: #ffffff;
+}
+.portfolio-filters li::before,
+.isotope-filters li::before {
+  content: none !important;
+  display: none !important;
 }
