@@ -283,3 +283,188 @@ main table tbody tr:hover td {
   content: none !important;
   display: none !important;
 }
+
+@keyframes iconBounce {
+  0%   { transform: translateY(0) scale(1) rotate(0deg);        color: #4aa3ff; text-shadow: 0 0 0 rgba(74, 163, 255, 0); }
+  30%  { transform: translateY(-8px) scale(1.25) rotate(-12deg); color: #ffffff; text-shadow: 0 6px 12px rgba(74, 163, 255, 0.8); }
+  60%  { transform: translateY(2px) scale(0.95) rotate(8deg);    color: #7dbcff; text-shadow: 0 2px 6px rgba(74, 163, 255, 0.5); }
+  100% { transform: translateY(0) scale(1) rotate(0deg);        color: #4aa3ff; text-shadow: 0 0 0 rgba(74, 163, 255, 0); }
+}
+ 
+.header-social-links a i,
+.social-links a i {
+  display: inline-block;
+}
+ 
+.header-social-links a:hover i,
+.social-links a:hover i {
+  animation: iconBounce 0.8s ease-in-out;
+}
+ 
+/* ---------- 2. Animacija: plūduriuojančios kortelės ikonėlės (Pagrindinis) ----------
+   Animuojama ikonėlė kortelės viduje, kad nesikirstų su AOS animacija.          */
+@keyframes iconFloat {
+  0%   { transform: translateY(0) rotate(0deg); }
+  50%  { transform: translateY(-6px) rotate(10deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
+ 
+.floating-card i {
+  display: inline-block;
+  animation: iconFloat 3s ease-in-out infinite;
+}
+ 
+.floating-card.code i      { animation-delay: 0.4s; }
+.floating-card.creativity i { animation-delay: 0.8s; }
+ 
+
+@keyframes neuronPulse {
+  0%   { transform: translateY(-50%) scale(1);   background-color: #0d6efd; box-shadow: 0 0 0 0 rgba(13, 110, 253, 0.7), 0 0 4px 1px rgba(13, 110, 253, 0.5); }
+  30%  { transform: translateY(-50%) scale(1.5); background-color: #ffffff; box-shadow: 0 0 0 8px rgba(13, 110, 253, 0.25), 0 0 18px 6px rgba(74, 163, 255, 0.9); }
+  60%  { transform: translateY(-50%) scale(1.1); background-color: #7dbcff; box-shadow: 0 0 0 14px rgba(13, 110, 253, 0), 0 0 10px 3px rgba(74, 163, 255, 0.6); }
+  100% { transform: translateY(-50%) scale(1);   background-color: #0d6efd; box-shadow: 0 0 0 0 rgba(13, 110, 253, 0), 0 0 4px 1px rgba(13, 110, 253, 0.5); }
+}
+ 
+@keyframes titleLineGrow {
+  0%   { width: 30px; opacity: 0.6; box-shadow: 0 0 0 rgba(13, 110, 253, 0); }
+  50%  { width: 100px; opacity: 1;  box-shadow: 0 0 12px rgba(13, 110, 253, 0.8); }
+  100% { width: 30px; opacity: 0.6; box-shadow: 0 0 0 rgba(13, 110, 253, 0); }
+}
+ 
+.section-title h2 {
+  position: relative;
+  display: inline-block;
+}
+ 
+.section-title h2::before {
+  content: "";
+  position: absolute;
+  left: -30px;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #0d6efd;
+  transform: translateY(-50%);
+  animation: neuronPulse 3.6s ease-in-out infinite;
+  pointer-events: none;
+}
+ 
+.section-title h2::after {
+  content: "" !important;
+  position: absolute !important;
+  display: block !important;
+  left: 50% !important;
+  right: auto !important;
+  bottom: 0 !important;
+  margin: 0 !important;
+  height: 3px !important;
+  width: 30px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #0d6efd, #7dbcff) !important;
+  transform: translateX(-50%);
+  animation: titleLineGrow 2.6s ease-in-out infinite;
+  pointer-events: none;
+}
+ 
+@keyframes dotsWave {
+  0%   { background-color: #0d6efd; box-shadow: -22px 0 0 0 rgba(13,110,253,0.25), 22px 0 0 0 rgba(13,110,253,0.25); transform: scale(1); }
+  30%  { background-color: rgba(13,110,253,0.25); box-shadow: -22px 0 0 0 #0d6efd, 22px 0 0 0 rgba(13,110,253,0.25); transform: scale(1.1); }
+  60%  { background-color: rgba(13,110,253,0.25); box-shadow: -22px 0 0 0 rgba(13,110,253,0.25), 22px 0 0 0 #0d6efd; transform: scale(1.1); }
+  100% { background-color: #0d6efd; box-shadow: -22px 0 0 0 rgba(13,110,253,0.25), 22px 0 0 0 rgba(13,110,253,0.25); transform: scale(1); }
+}
+ 
+body.services-page .section-title::after {
+  content: "";
+  display: block;
+  width: 10px;
+  height: 10px;
+  margin: 22px auto 0;
+  border-radius: 50%;
+  background-color: #0d6efd;
+  animation: dotsWave 1.4s ease-in-out infinite;
+  pointer-events: none;
+}
+ 
+@media (max-width: 575px) {
+  .section-title h2::before { left: -22px; width: 10px; height: 10px; }
+}
+ 
+@media (prefers-reduced-motion: reduce) {
+  .floating-card i,
+  .section-title h2::before,
+  .section-title h2::after,
+  body.services-page .section-title::after,
+  .header-social-links a:hover i,
+  .social-links a:hover i {
+    animation: none !important;
+  }
+}
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+ 
+body.services-page section.services {
+  background: linear-gradient(-45deg, #0a0c0d, #3c5059, #316e8d, #3b98a8, #1834b1);
+  background-size: 400% 400%;
+  animation: gradientShift 8s ease-in-out infinite;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+body.about-page section.about {
+  position: relative;
+  overflow: hidden;
+}
+ 
+body.about-page section.about .container {
+  position: relative;
+  z-index: 1;
+}
+ 
+@keyframes shapeFloat {
+  0%   { transform: translate(0, 0); }
+  25%  { transform: translate(25px, -30px); }
+  50%  { transform: translate(-15px, -55px); }
+  75%  { transform: translate(-30px, -20px); }
+  100% { transform: translate(0, 0); }
+}
+ 
+@keyframes sunSpin {
+  0%   { transform: rotate(0deg)   scale(1);   opacity: 0.75; }
+  30%  { transform: rotate(120deg) scale(1.25); opacity: 1; }
+  60%  { transform: rotate(240deg) scale(0.9);  opacity: 0.85; }
+  100% { transform: rotate(360deg) scale(1);   opacity: 0.75; }
+}
+ 
+
+body.about-page section.about::before {
+  content: "";
+  position: absolute;
+  top: 12%;
+  right: 6%;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #7dbcff, #0d6efd);
+  opacity: 0.35;
+  z-index: 0;
+  pointer-events: none;
+  animation: shapeFloat 9s ease-in-out infinite;
+}
+ 
+body.about-page section.about::after {
+  content: "";
+  position: absolute;
+  top: 6%;
+  left: 4%;
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle, #fff3b0 0%, #ffd23f 45%, #ff9f1c 100%);
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  z-index: 0;
+  pointer-events: none;
+  animation: sunSpin 10s linear infinite;
+}
+ 
