@@ -407,9 +407,9 @@ body.services-page .section-title::after {
 }
  
 body.services-page section.services {
-  background: linear-gradient(-45deg, #0a0c0d, #3c5059, #316e8d, #3b98a8, #1834b1);
+  background: linear-gradient(-45deg, #78a8c0, #2a5d75, #2e6a88, #1e355a, #04114a);
   background-size: 400% 400%;
-  animation: gradientShift 8s ease-in-out infinite;
+  animation: gradientShift 10s ease-in-out infinite;
   margin-top: 0 !important;
   margin-bottom: 0 !important;
 }
