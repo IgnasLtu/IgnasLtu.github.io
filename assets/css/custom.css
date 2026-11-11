@@ -301,8 +301,6 @@ main table tbody tr:hover td {
   animation: iconBounce 0.8s ease-in-out;
 }
  
-/* ---------- 2. Animacija: plūduriuojančios kortelės ikonėlės (Pagrindinis) ----------
-   Animuojama ikonėlė kortelės viduje, kad nesikirstų su AOS animacija.          */
 @keyframes iconFloat {
   0%   { transform: translateY(0) rotate(0deg); }
   50%  { transform: translateY(-6px) rotate(10deg); }
