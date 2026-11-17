@@ -126,35 +126,95 @@
               <h3>Susisiek</h3>
               <p>Jei turite klausimų, klauskite atsakysiu laišku.</p>
 
-              <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
+              <form id="contactForm" class="php-email-form" novalidate data-aos="fade-up" data-aos-delay="200">
                 <div class="row gy-4">
 
                   <div class="col-md-6">
-                    <input type="text" name="name" class="form-control" placeholder="Jūsų vardas" required="">
+                    <input type="text" id="vardas" name="vardas" class="form-control" placeholder="Vardas" autocomplete="given-name" required>
+                    <small class="field-error" id="err-vardas"></small>
                   </div>
 
-                  <div class="col-md-6 ">
-                    <input type="email" class="form-control" name="email" placeholder="Jūsų el. paštas" required="">
+                  <div class="col-md-6">
+                    <input type="text" id="pavarde" name="pavarde" class="form-control" placeholder="Pavardė" autocomplete="family-name" required>
+                    <small class="field-error" id="err-pavarde"></small>
+                  </div>
+
+                  <div class="col-md-6">
+                    <input type="email" id="email" name="email" class="form-control" placeholder="El. paštas" autocomplete="email" required>
+                    <small class="field-error" id="err-email"></small>
+                  </div>
+
+                  <div class="col-md-6">
+                    <input type="tel" id="telefonas" name="telefonas" class="form-control" placeholder="Telefono numeris (+370...)" autocomplete="tel" required>
+                    <small class="field-error" id="err-telefonas"></small>
                   </div>
 
                   <div class="col-12">
-                    <input type="text" class="form-control" name="subject" placeholder="Tema" required="">
+                    <input type="text" id="adresas" name="adresas" class="form-control" placeholder="Adresas" autocomplete="street-address" required>
+                    <small class="field-error" id="err-adresas"></small>
                   </div>
 
                   <div class="col-12">
-                    <textarea class="form-control" name="message" rows="6" placeholder="Žinutė" required=""></textarea>
+                    <p class="rating-intro">Įvertinkite mano svetainę (1 – labai blogai, 10 – puiku):</p>
+
+                    <fieldset class="rating-question">
+                      <legend>1. Kaip vertinate svetainės dizainą?</legend>
+                      <div class="rating-group" role="radiogroup">
+                        <label class="rating-pill"><input type="radio" name="klausimas1" value="1" required><span>1</span></label>
+                        <label class="rating-pill"><input type="radio" name="klausimas1" value="2"><span>2</span></label>
+                        <label class="rating-pill"><input type="radio" name="klausimas1" value="3"><span>3</span></label>
+                        <label class="rating-pill"><input type="radio" name="klausimas1" value="4"><span>4</span></label>
+                        <label class="rating-pill"><input type="radio" name="klausimas1" value="5"><span>5</span></label>
+                        <label class="rating-pill"><input type="radio" name="klausimas1" value="6"><span>6</span></label>
+                        <label class="rating-pill"><input type="radio" name="klausimas1" value="7"><span>7</span></label>
+                        <label class="rating-pill"><input type="radio" name="klausimas1" value="8"><span>8</span></label>
+                        <label class="rating-pill"><input type="radio" name="klausimas1" value="9"><span>9</span></label>
+                        <label class="rating-pill"><input type="radio" name="klausimas1" value="10"><span>10</span></label>
+                      </div>
+                    </fieldset>
+
+                    <fieldset class="rating-question">
+                      <legend>2. Kaip vertinate svetainės turinį?</legend>
+                      <div class="rating-group" role="radiogroup">
+                        <label class="rating-pill"><input type="radio" name="klausimas2" value="1" required><span>1</span></label>
+                        <label class="rating-pill"><input type="radio" name="klausimas2" value="2"><span>2</span></label>
+                        <label class="rating-pill"><input type="radio" name="klausimas2" value="3"><span>3</span></label>
+                        <label class="rating-pill"><input type="radio" name="klausimas2" value="4"><span>4</span></label>
+                        <label class="rating-pill"><input type="radio" name="klausimas2" value="5"><span>5</span></label>
+                        <label class="rating-pill"><input type="radio" name="klausimas2" value="6"><span>6</span></label>
+                        <label class="rating-pill"><input type="radio" name="klausimas2" value="7"><span>7</span></label>
+                        <label class="rating-pill"><input type="radio" name="klausimas2" value="8"><span>8</span></label>
+                        <label class="rating-pill"><input type="radio" name="klausimas2" value="9"><span>9</span></label>
+                        <label class="rating-pill"><input type="radio" name="klausimas2" value="10"><span>10</span></label>
+                      </div>
+                    </fieldset>
+
+                    <fieldset class="rating-question">
+                      <legend>3. Kaip vertinate svetainės naudojimo patogumą?</legend>
+                      <div class="rating-group" role="radiogroup">
+                        <label class="rating-pill"><input type="radio" name="klausimas3" value="1" required><span>1</span></label>
+                        <label class="rating-pill"><input type="radio" name="klausimas3" value="2"><span>2</span></label>
+                        <label class="rating-pill"><input type="radio" name="klausimas3" value="3"><span>3</span></label>
+                        <label class="rating-pill"><input type="radio" name="klausimas3" value="4"><span>4</span></label>
+                        <label class="rating-pill"><input type="radio" name="klausimas3" value="5"><span>5</span></label>
+                        <label class="rating-pill"><input type="radio" name="klausimas3" value="6"><span>6</span></label>
+                        <label class="rating-pill"><input type="radio" name="klausimas3" value="7"><span>7</span></label>
+                        <label class="rating-pill"><input type="radio" name="klausimas3" value="8"><span>8</span></label>
+                        <label class="rating-pill"><input type="radio" name="klausimas3" value="9"><span>9</span></label>
+                        <label class="rating-pill"><input type="radio" name="klausimas3" value="10"><span>10</span></label>
+                      </div>
+                    </fieldset>
                   </div>
 
                   <div class="col-12 text-center">
-                    <div class="loading">Kraunama...</div>
-                    <div class="error-message"></div>
-                    <div class="sent-message">Jūsų žinutė buvo išsiųsta. Ačiū!</div>
-
-                    <button type="submit" class="btn">Siųsti žinutę</button>
+                    <button type="submit" id="submitBtn" class="btn" disabled>Siųsti</button>
                   </div>
 
                 </div>
               </form>
+
+              
+              <div id="formResults" class="form-results" aria-live="polite"></div>
 
             </div>
           </div>
@@ -210,6 +270,7 @@
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/custom.js"></script>
 
 </body>
 
