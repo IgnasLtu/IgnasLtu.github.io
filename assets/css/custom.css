@@ -660,3 +660,44 @@ body.about-page .profile-figure img {
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.35),
               0 8px 10px -6px rgba(0, 0, 0, 0.35) !important;
 }
+
+.form-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.submit-wrap {
+  display: inline-block;
+}
+
+.submit-wrap.is-disabled {
+  cursor: not-allowed;
+}
+
+.contact-form .btn:disabled {
+  pointer-events: none;
+}
+
+.contact-form .btn.btn-clear {
+  background: transparent !important;
+  border: 1px solid #285fa7 !important;
+  color: #e3e9ee !important;
+  box-shadow: none !important;
+}
+
+.contact-form .btn.btn-clear:hover {
+  background-color: rgba(40, 95, 167, 0.25) !important;
+  border-color: #4aa3ff !important;
+  box-shadow: none !important;
+}
+
+.rating-question.has-error .rating-pill span {
+  border-color: #ff6b6b;
+}
+
+.rating-question .field-error {
+  margin-top: 8px;
+}
