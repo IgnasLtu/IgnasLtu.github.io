@@ -145,7 +145,7 @@
                   </div>
 
                   <div class="col-md-6">
-                    <input type="tel" id="telefonas" name="telefonas" class="form-control" placeholder="Telefono numeris (+370...)" autocomplete="tel" required>
+                    <input type="tel" id="telefonas" name="telefonas" class="form-control" placeholder="+370 6xx xxxxx" inputmode="numeric" autocomplete="tel" required>
                     <small class="field-error" id="err-telefonas"></small>
                   </div>
 
@@ -171,6 +171,7 @@
                         <label class="rating-pill"><input type="radio" name="klausimas1" value="9"><span>9</span></label>
                         <label class="rating-pill"><input type="radio" name="klausimas1" value="10"><span>10</span></label>
                       </div>
+                      <small class="field-error" id="err-klausimas1"></small>
                     </fieldset>
 
                     <fieldset class="rating-question">
@@ -187,6 +188,7 @@
                         <label class="rating-pill"><input type="radio" name="klausimas2" value="9"><span>9</span></label>
                         <label class="rating-pill"><input type="radio" name="klausimas2" value="10"><span>10</span></label>
                       </div>
+                      <small class="field-error" id="err-klausimas2"></small>
                     </fieldset>
 
                     <fieldset class="rating-question">
@@ -203,17 +205,20 @@
                         <label class="rating-pill"><input type="radio" name="klausimas3" value="9"><span>9</span></label>
                         <label class="rating-pill"><input type="radio" name="klausimas3" value="10"><span>10</span></label>
                       </div>
+                      <small class="field-error" id="err-klausimas3"></small>
                     </fieldset>
                   </div>
 
                   <div class="col-12 text-center">
-                    <button type="submit" id="submitBtn" class="btn" disabled>Siųsti</button>
+                    <div class="form-actions">
+                      <span class="submit-wrap is-disabled" id="submitWrap"><button type="submit" id="submitBtn" class="btn" disabled>Siųsti</button></span>
+                      <button type="button" id="clearBtn" class="btn btn-clear">Išvalyti</button>
+                    </div>
                   </div>
 
                 </div>
               </form>
 
-              
               <div id="formResults" class="form-results" aria-live="polite"></div>
 
             </div>
@@ -226,10 +231,7 @@
     </section><!-- /Contact Section -->
 
   </main>
-<div class="col-12 text-center form-actions">
-  <button type="submit" id="submitBtn" class="btn btn-primary" disabled>Siųsti</button>
-  <button type="button" id="clearBtn" class="btn btn-clear">Išvalyti</button>
-</div>
+
   <footer id="footer" class="footer">
 
     <div class="container">
