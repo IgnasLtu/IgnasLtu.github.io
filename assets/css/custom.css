@@ -701,3 +701,244 @@ body.about-page .profile-figure img {
 .rating-question .field-error {
   margin-top: 8px;
 }
+
+.sk-top {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.sk-profile,
+.sk-stats,
+.sk-column {
+  background: #17222d;
+  border: 1px solid #285fa7;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.35),
+              0 8px 10px -6px rgba(0, 0, 0, 0.35);
+}
+
+.sk-profile {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 25px;
+}
+
+.sk-avatar {
+  flex-shrink: 0;
+  width: 110px;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid #0d6efd;
+  background: #0f1b26;
+}
+
+.sk-avatar-pop {
+  animation: avatarPop 0.6s ease;
+}
+
+@keyframes avatarPop {
+  0%   { transform: scale(0.7) rotate(-10deg); opacity: 0.4; }
+  60%  { transform: scale(1.12) rotate(4deg);  opacity: 1; }
+  100% { transform: scale(1) rotate(0deg);     opacity: 1; }
+}
+
+.sk-profile-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.sk-profile-info h3 {
+  margin: 0 0 4px;
+  font-size: 1.5rem;
+  color: #ffffff;
+}
+
+.sk-profile-info p {
+  margin: 0 0 6px;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #e3e9ee;
+}
+
+.sk-profile-info .sk-subtitle {
+  color: #9fb0bf;
+  font-size: 0.95rem;
+}
+
+.sk-profile-info strong {
+  color: #4aa3ff;
+}
+
+.sk-bar {
+  width: 100%;
+  height: 16px;
+  margin: 12px 0 8px;
+  background: #0f1b26;
+  border: 1px solid #285fa7;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.sk-bar-fill {
+  width: 0;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #0d6efd, #7dbcff);
+  transition: width 0.6s ease;
+}
+
+.sk-profile-info .sk-bar-text {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #9fb0bf;
+}
+
+.sk-stats {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 14px;
+  padding: 25px;
+}
+
+.sk-stat {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.sk-stat-value {
+  min-width: 64px;
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: #4aa3ff;
+}
+
+.sk-stat-label {
+  color: #e3e9ee;
+  font-size: 0.95rem;
+}
+
+.sk-board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.sk-column {
+  padding: 18px;
+  border-top: 4px solid #6b7280;
+}
+
+.sk-column[data-state="Mokomasi"] { border-top-color: #f59e0b; }
+.sk-column[data-state="Atlikta"]  { border-top-color: #22c55e; }
+
+.sk-column-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.sk-column-header h3 {
+  margin: 0;
+  font-size: 1.15rem;
+  color: #ffffff;
+}
+
+.sk-count {
+  min-width: 28px;
+  padding: 2px 8px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #ffffff;
+  background: #285fa7;
+  border-radius: 999px;
+}
+
+.sk-column-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 60px;
+}
+
+.sk-card {
+  padding: 14px 16px;
+  background: #0f1b26;
+  border: 1px solid #285fa7;
+  border-radius: 10px;
+  animation: cardIn 0.35s ease;
+}
+
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.sk-card h4 {
+  margin: 0 0 8px;
+  font-size: 1rem;
+  line-height: 1.35;
+  color: #ffffff;
+}
+
+.sk-xp-badge {
+  display: inline-block;
+  margin-bottom: 10px;
+  padding: 2px 10px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #ffffff;
+  background: #0d6efd;
+  border-radius: 999px;
+}
+
+.sk-select {
+  display: block;
+  width: 100%;
+  padding: 6px 10px;
+  font-size: 0.95rem;
+  color: #e3e9ee;
+  background: #17222d;
+  border: 1px solid #285fa7;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.sk-select:focus-visible {
+  outline: 2px solid #7dbcff;
+  outline-offset: 2px;
+}
+
+.sk-column-body .sk-empty {
+  margin: 0;
+  font-size: 0.9rem;
+  font-style: italic;
+  color: #9fb0bf;
+}
+
+@media (max-width: 991px) {
+  .sk-top   { grid-template-columns: 1fr; }
+  .sk-board { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 575px) {
+  .sk-profile { flex-direction: column; text-align: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sk-avatar-pop,
+  .sk-card {
+    animation: none !important;
+  }
+  .sk-bar-fill {
+    transition: none;
+  }
+}
