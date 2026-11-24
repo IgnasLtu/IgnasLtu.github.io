@@ -942,3 +942,112 @@ body.about-page .profile-figure img {
     transition: none;
   }
 }
+
+.sk-section-heading {
+  margin: 44px 0 18px;
+  font-size: 1.5rem;
+  color: #ffffff;
+}
+
+.sk-achievements {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.sk-ach {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 20px;
+  background: #17222d;
+  border: 1px solid #285fa7;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.35);
+  transition: opacity 0.3s ease, filter 0.3s ease, border-color 0.3s ease;
+}
+
+.sk-ach-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  font-size: 1.7rem;
+  border-radius: 50%;
+}
+
+.sk-ach-body {
+  min-width: 0;
+}
+
+.sk-ach h4 {
+  margin: 0 0 4px;
+  font-size: 1.05rem;
+  color: #ffffff;
+}
+
+.sk-ach p {
+  margin: 0 0 8px;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: #9fb0bf;
+}
+
+.sk-ach-status {
+  display: inline-block;
+  padding: 2px 10px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  border-radius: 999px;
+}
+
+.sk-ach.is-unlocked {
+  border-color: #f5b301;
+  box-shadow: 0 0 18px rgba(245, 179, 1, 0.35), 0 10px 25px -5px rgba(0, 0, 0, 0.35);
+}
+
+.sk-ach.is-unlocked .sk-ach-icon {
+  color: #1a1300;
+  background: linear-gradient(135deg, #ffd23f, #f5b301);
+}
+
+.sk-ach.is-unlocked .sk-ach-status {
+  color: #1a1300;
+  background: #f5b301;
+}
+
+.sk-ach.is-locked {
+  border: 1px dashed #475569;
+  opacity: 0.6;
+  filter: grayscale(1);
+}
+
+.sk-ach.is-locked .sk-ach-icon {
+  color: #94a3b8;
+  background: #0f1b26;
+}
+
+.sk-ach.is-locked .sk-ach-status {
+  color: #cbd5e1;
+  background: #334155;
+}
+
+.sk-ach-new {
+  animation: achUnlock 0.8s ease;
+}
+
+@keyframes achUnlock {
+  0%   { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(245, 179, 1, 0.8); }
+  50%  { transform: scale(1.05); box-shadow: 0 0 0 16px rgba(245, 179, 1, 0); }
+  100% { transform: scale(1); box-shadow: 0 0 18px rgba(245, 179, 1, 0.35); }
+}
+
+@media (max-width: 991px) {
+  .sk-achievements { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sk-ach-new { animation: none !important; }
+}

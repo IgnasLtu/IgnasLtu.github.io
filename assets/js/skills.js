@@ -1,9 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
   const board = document.getElementById('skillBoard');
   if (!board) return; 
-
   const PLANNED = 'Planuojama';
-  const LEARNING = 'Mokomasi';
+  const LEARNING = 'Mokomasi';  
   const DONE = 'Atlikta';
   const STATES = [PLANNED, LEARNING, DONE];
 
@@ -14,8 +13,8 @@ document.addEventListener('DOMContentLoaded', function () {
     { id: 4, name: 'MATLAB modeliavimas',             state: DONE,     xp: 50 },
     { id: 5, name: 'Duomenų analizė (NumPy, Pandas)', state: LEARNING, xp: 60 },
     { id: 6, name: 'Mašininis mokymasis',             state: LEARNING, xp: 80 },
-    { id: 7, name: 'HTML ir CSS',                     state: PLANNED,  xp: 70 },
-    { id: 8, name: 'JavaScript',                      state: PLANNED,  xp: 90 },
+    { id: 7, name: 'HTML ir CSS',                     state: PLANNED,  xp: 80 },
+    { id: 8, name: 'JavaScript',                      state: PLANNED,  xp: 70 }
   ];
 
   const LEVELS = [
@@ -32,6 +31,35 @@ document.addEventListener('DOMContentLoaded', function () {
     level4: 'assets/img/avatar-4.svg'
   };
 
+  const STORAGE_KEY = 'skillTracker.skillStates';
+
+  const ACHIEVEMENTS = [
+    {
+      id: 'explorer',
+      title: 'Įgūdžių atradėjas',
+      description: 'Atlik bent 1 įgūdį',
+      icon: 'bi-check-circle',
+      check: function (stats) { return stats.doneCount >= 1; }
+    },
+    {
+      id: 'master',
+      title: 'Įgūdžių meistras',
+      description: 'Atlik bent 4 įgūdžius',
+      icon: 'bi-award',
+      check: function (stats) { return stats.doneCount >= 4; }
+    },
+    {
+      id: 'expert',
+      title: 'Įgūdžių ekspertas',
+      description: 'Pasiek 4 lygį',
+      icon: 'bi-trophy',
+      check: function (stats) { return stats.level >= 4; }
+    }
+  ];
+
+  const achievementBoard = document.getElementById('achievementsBoard');
+  let unlockedBefore = null; 
+
   function calculateTotalXP() {
     let total = 0;
     for (const skill of skills) {
@@ -40,6 +68,10 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     }
     return total;
+  }
+
+  function countDoneSkills() {
+    return skills.filter(function (s) { return s.state === DONE; }).length;
   }
 
   function getLevelInfo(xp) {
@@ -54,7 +86,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function calculateProgress(xp, lvl) {
     if (lvl.nextMin === null) {
-      return 100;
+      return 100; 
     }
     const earned = xp - lvl.min;
     const needed = lvl.nextMin - lvl.min;
@@ -202,7 +234,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function renderStats() {
     const total = skills.length;
-    const done = skills.filter(function (s) { return s.state === DONE; }).length;
+    const done = countDoneSkills();
     const percent = total === 0 ? 0 : Math.round((done / total) * 100);
 
     document.getElementById('statTotal').textContent = total;
@@ -210,11 +242,96 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('statPercent').textContent = percent + '%';
   }
 
+  function saveSkills() {
+    try {
+      const states = {};
+      skills.forEach(function (skill) {
+        states[skill.id] = skill.state;
+      });
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(states));
+    } catch (error) {
+      console.warn('Nepavyko išsaugoti duomenų:', error);
+    }
+  }
+
+  function loadSkills() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (raw === null) {
+        return; 
+      }
+      const saved = JSON.parse(raw);
+      skills.forEach(function (skill) {
+        if (STATES.includes(saved[skill.id])) {
+          skill.state = saved[skill.id]; 
+        }
+      });
+    } catch (error) {
+      console.warn('Nepavyko nuskaityti išsaugotų duomenų, naudojamos pradinės būsenos:', error);
+    }
+  }
+
+  function createAchievementCard(achievement, unlocked) {
+    const card = document.createElement('div');
+    card.className = 'sk-ach ' + (unlocked ? 'is-unlocked' : 'is-locked');
+
+    const iconBox = document.createElement('div');
+    iconBox.className = 'sk-ach-icon';
+    const icon = document.createElement('i');
+    icon.className = 'bi ' + (unlocked ? achievement.icon : 'bi-lock');
+    iconBox.appendChild(icon);
+
+    const body = document.createElement('div');
+    body.className = 'sk-ach-body';
+
+    const title = document.createElement('h4');
+    title.textContent = achievement.title;
+
+    const description = document.createElement('p');
+    description.textContent = achievement.description;
+
+    const status = document.createElement('span');
+    status.className = 'sk-ach-status';
+    status.textContent = unlocked ? 'Atrakinta' : 'Neatrakinta';
+
+    body.appendChild(title);
+    body.appendChild(description);
+    body.appendChild(status);
+    card.appendChild(iconBox);
+    card.appendChild(body);
+    return card;
+  }
+  function renderAchievements() {
+    if (!achievementBoard) return;
+
+    const stats = {
+      doneCount: countDoneSkills(),
+      level: getLevelInfo(calculateTotalXP()).level
+    };
+
+    achievementBoard.textContent = '';
+    const unlockedNow = {};
+
+    ACHIEVEMENTS.forEach(function (achievement) {
+      const unlocked = achievement.check(stats);
+      unlockedNow[achievement.id] = unlocked;
+
+      const card = createAchievementCard(achievement, unlocked);
+      if (unlocked && unlockedBefore !== null && !unlockedBefore[achievement.id]) {
+        card.classList.add('sk-ach-new');
+      }
+      achievementBoard.appendChild(card);
+    });
+
+    unlockedBefore = unlockedNow;
+  }
+
   function changeSkillState(id, newState) {
     const skill = skills.find(function (s) { return s.id === id; });
     if (!skill) return;
 
     skill.state = newState; 
+    saveSkills();           
     updateAll();            
   }
 
@@ -222,8 +339,10 @@ document.addEventListener('DOMContentLoaded', function () {
     renderBoard();
     renderProfile();
     renderStats();
+    renderAchievements();
   }
 
+  loadSkills(); 
   buildBoard();
   updateAll();
 });
